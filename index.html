@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ciclismania - Buscaciclistas</title>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-responsive.css">
+  <script src="lib/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="RidersListCtrl">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                <div class="logo">
+                    CICLISMANIA
+                </div>
+                <div class="control-group">
+                    <input class="search" type="text" placeholder="Nombre o apellido del ciclista" ng-model="search.name">
+                </div>
+                <div class="control-group">
+                    <input class="search" type="text" placeholder="Equipo" ng-model="search.team">
+                </div>
+                <div class="control-group">
+                    <input class="search" type="text" placeholder="Dorsal (3 dígitos ej: 001, 011, 111)" ng-model="search.dorsal">
+                </div>
+            </div>
+            <div class="span10 black">
+                <h2>Corredores Tour de Francia 2013: {{riders.length}}</h2>  
+                    <ul class="card">
+                        <li ng-repeat="rider in riders | filter:search | orderBy:team" class="main_card">
+                            <div class="cyling_card_wrapper">
+                                <h3>{{rider.name}}</h3>
+                                <div class="photo">
+                                     <img ng-src="{{rider.imageUrl}}">
+                                </div>
+                                 <div class="cycling_card">
+                                    <ul>
+                                        <li style="font-weight:bold;">Dorsal: {{rider.dorsal}}</li>
+                                        <li style="font-weight:bold; text-transform:uppercase;">{{rider.team}}</li>
+                                        <li>Nacido en {{rider.country}} el {{rider.year}}.</li>
+                                        <li style="font-style:italic; font-weight:bold;  color:#666666;">{{rider.type}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="description">
+                                "{{rider.description}}"
+                            </div>
+                            <div class="victories">
+                                <h4>Éxitos más importantes</h4>
+                                <ul style="border-top: 1px solid #DFDFDF;">
+                                    <li>{{rider.victory1}}</li>
+                                    <li>{{rider.victory2}}</li>
+                                    <li>{{rider.victory3}}</li>
+                                    <li>{{rider.victory4}}</li>
+                                </ul>
+                             </div>
+                            <div class="results">
+                                 <h4 class="leftie">Resultados en las Grandes Vueltas</h4>
+                                <table class="table table">
+                                    <tr>
+                                        <td></td>
+                                        <td>2010</td>
+                                        <td>2011</td>
+                                        <td>2012</td>
+                                        <td>2013</td>
+                                    </tr>
+                                    <tr class="giro">
+                                        <td>Giro</td>
+                                        <td>{{rider.g2010}}</td>
+                                        <td>{{rider.g2011}}</td>
+                                        <td>{{rider.g2012}}</td>
+                                        <td>{{rider.g2013}}</td>
+                                    </tr>
+                                    <tr class="tour">
+                                        <td>Tour</td>
+                                        <td>{{rider.t2010}}</td>
+                                        <td>{{rider.t2011}}</td>
+                                        <td>{{rider.t2012}}</td>
+                                        <td>{{rider.t2013}}</td>
+                                    </tr>
+                                    <tr class="vuelta">
+                                        <td>Vuelta</td>
+                                        <td>{{rider.v2010}}</td>
+                                        <td>{{rider.v2011}}</td>
+                                        <td>{{rider.v2012}}</td>
+                                        <td>{{rider.v2013}}</td>
+                                    </tr>
+                                </table>
+                            <!--<div class="video">
+                                <h4>{{rider.video_title}}</h4>
+                                <div class="video-container">
+                                    <iframe width="560" height="315" src="{{rider.videoURL}}" frameborder="0" allowfullscreen></iframe>
+                                </div>-->
+                            </div>
+                        </li>
+                    </ul>
+           </div>
+        </div>
+    </div>
+</body>
+</html>
